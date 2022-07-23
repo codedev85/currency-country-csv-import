@@ -1,0 +1,20 @@
+{
+    "name": "olawuyi/country_code",
+    "description": "Country Code and Cureency Import",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Olawuyi\\CountryCode\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ayansola Olawuyi"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "ext-pdo": "*",
+        "phpoffice/phpspreadsheet": "dev-master"
+    }
+}
