@@ -31,3 +31,13 @@ b.) currency_data.sql for importing currencies
     http://country_code.test/src/api/Country/readFile.php?page=5
     To fetch Currency Data
     http://country_code.test/src/api/Currency/getData.php?page=15
+
+6.) Search Capabilities 
+    Method : Post Method :
+    post data :search_data ;
+    Searchable Key : official_name 
+    Endpoints :
+    Filter Country with a post request of search_data
+    http://country_code.test/src/api/Country/filterCountry.php
+    Filter Currency with a post request of search_data
+    http://country_code.test/src/api/Currency/FilterCurrency.php

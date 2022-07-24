@@ -8,6 +8,9 @@ namespace olawuyi\country_code\models;
 //include_once '../helpers/Paginate.php';
 
 use olawuyi\country_code\helpers\Paginate;
+use olawuyi\country_code\helpers\Search;
+
+require '../../helpers/Search.php';
 
 class CurrencyCode {
 
@@ -37,12 +40,21 @@ class CurrencyCode {
 //        $stmt  = $this->conn->prepare($query);
 //        $stmt->execute();
 //        return $stmt;
+
         $pagination  = new Paginate($this->conn ,'currency_data');
         $data = $pagination->get_data();
         $pages  = $pagination->get_pagination_number();
         return $data;
 
     }
+
+    public function searchData($dataLookUp)
+    {
+        $searchData  = new Search($this->conn ,'currency_data');
+        $data =   $searchData->search($dataLookUp);
+        return $data;
+    }
+
 
 
 

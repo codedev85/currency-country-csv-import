@@ -48,6 +48,6 @@ if($num > 0 ) {
 }else{
 
     echo json_encode(
-        array('message' => 'No Country Found')
+        array('message' => 'No Currency Found')
     );
 }

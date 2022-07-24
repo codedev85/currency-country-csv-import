@@ -13,8 +13,10 @@ namespace olawuyi\country_code\models;
 
 
 require '../../helpers/Paginate.php';
+require '../../helpers/Search.php';
 
 use \olawuyi\country_code\helpers\Paginate;
+use olawuyi\country_code\helpers\Search;
 
 class CountryCode {
 
@@ -43,15 +45,13 @@ class CountryCode {
     }
 
 
-    public function read()
+
+
+
+    public function searchData($dataLookUp)
     {
-//        $query = "SELECT * FROM country_data";
-//        $stmt  = $this->conn->prepare($query);
-//        $stmt->execute();
-//        return $stmt;
-        $pagination  = new Paginate($this->conn ,'country_data');
-        $data = $pagination->get_data();
-        $pages  = $pagination->get_pagination_number();
+        $searchData  = new Search($this->conn ,'country_data');
+        $data =   $searchData->search($dataLookUp);
         return $data;
     }
 
