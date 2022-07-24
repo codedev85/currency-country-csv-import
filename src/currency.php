@@ -14,8 +14,8 @@ $conn = new Database();
 $db =$conn->connect();
 
 //read data
-$readCountryCodes = new CurrencyCode($db);
-$data = $readCountryCodes->read();
+$readCurrencyCodes = new CurrencyCode($db);
+$data = $readCurrencyCodes->read();
 $num = $data->rowCount();
 
 if($num > 0 ) {
@@ -26,7 +26,7 @@ if($num > 0 ) {
         $country_item = array(
             'id' => $id,
             'iso_code' =>  $iso_code,
-            'iso_numeric_code' =>  $iso_numberic_code,
+            'iso_numeric_code' =>  $iso_numeric_code,
             'common_name'=>  $common_name,
             'official_name'=>  $official_name,
             'symbol' =>  $symbol,
@@ -34,8 +34,6 @@ if($num > 0 ) {
         );
         array_push($countryArr['data'],$country_item);
     }
-
-//    echo json_encode($countryArr);
 }else{
 
     echo json_encode(

@@ -1,10 +1,20 @@
 <?php
+
 namespace olawuyi\country_code\models;
+
+
 
 //use PhpOffice\PhpSpreadsheet\Spreadsheet;
 //use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 //require '../../vendor/autoload.php';
+
+
+
+
+require '../../helpers/Paginate.php';
+
+use \olawuyi\country_code\helpers\Paginate;
 
 class CountryCode {
 
@@ -35,10 +45,14 @@ class CountryCode {
 
     public function read()
     {
-        $query = "SELECT * FROM country_data";
-        $stmt  = $this->conn->prepare($query);
-        $stmt->execute();
-        return $stmt;
+//        $query = "SELECT * FROM country_data";
+//        $stmt  = $this->conn->prepare($query);
+//        $stmt->execute();
+//        return $stmt;
+        $pagination  = new Paginate($this->conn ,'country_data');
+        $data = $pagination->get_data();
+        $pages  = $pagination->get_pagination_number();
+        return $data;
     }
 
 

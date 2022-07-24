@@ -5,6 +5,9 @@ namespace olawuyi\country_code\models;
 //use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 //require '../../vendor/autoload.php';
+//include_once '../helpers/Paginate.php';
+
+use olawuyi\country_code\helpers\Paginate;
 
 class CurrencyCode {
 
@@ -30,10 +33,15 @@ class CurrencyCode {
 
     public function read()
     {
-        $query = "SELECT * FROM currency_data";
-        $stmt  = $this->conn->prepare($query);
-        $stmt->execute();
-        return $stmt;
+//        $query = "SELECT * FROM currency_data ";
+//        $stmt  = $this->conn->prepare($query);
+//        $stmt->execute();
+//        return $stmt;
+        $pagination  = new Paginate($this->conn ,'currency_data');
+        $data = $pagination->get_data();
+        $pages  = $pagination->get_pagination_number();
+        return $data;
+
     }
 
 
@@ -44,13 +52,9 @@ class CurrencyCode {
         while($row = fgetcsv($file))
         {
             $value ="'". implode("','" , $row) . "'";
-            $query =  "INSERT INTO currency_data (
-                          iso_code ,iso_numeric_code,common_name,
-                          official_name,symbol)
-                        VALUES (" . $value . ")";
+            $query =  "INSERT INTO currency_data ( iso_code ,iso_numeric_code,common_name, official_name ,symbol) VALUES (" . $value . ")";
             $stmt  = $this->conn->prepare($query);
             $stmt->execute();
-
         }
         return $stmt;
 
